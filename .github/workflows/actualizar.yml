@@ -1,0 +1,48 @@
+name: Actualizar y publicar
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # cada 6 horas (hora UTC)
+  workflow_dispatch:         # permite correrlo a mano desde la pestaña Actions
+  push:
+    branches: [main]         # y también cada vez que subes un cambio
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Bajar la temporada actual de The Finals
+        run: python3 descargar_finals.py
+
+      - name: Armar el sitio
+        run: |
+          mkdir _site
+          cp index.html logo-cruel.png _site/
+          cp -r data _site/data
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
