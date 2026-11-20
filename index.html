@@ -155,6 +155,16 @@ footer{color:#776b80;font-size:11px;margin-top:35px;text-align:center}
 #fbTable td:nth-child(2){width:100%}
 #fbTable th.c,#fbTable td.c{text-align:center;min-width:110px}
 .lg img{height:32px}
+html{scroll-behavior:smooth}
+.navicon svg{width:1em;height:1em;vertical-align:-3px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+nav button,.back,.primary,.hero button,.filter-toggle,.tracker-tab,.fb-pager button,.profile-game-current,.profile-game-option,.player-result{transition:transform .22s cubic-bezier(.2,.8,.2,1),background .22s,border-color .22s,box-shadow .22s,color .22s}
+nav button:hover{transform:translateX(5px);box-shadow:0 6px 20px #7200aa40}
+.back:hover,.primary:hover,.hero button:hover,.filter-toggle:hover,.tracker-tab:hover,.fb-pager button:hover:not(:disabled){transform:translateY(-2px) scale(1.03);box-shadow:0 8px 22px #7200aa45}
+nav button:active,.back:active,.primary:active,.hero button:active,.filter-toggle:active{transform:scale(.97)}
+.page.active{animation:pageIn .4s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.sfx{margin-top:12px;background:transparent;border:1px solid #512075;color:#b98ae1;border-radius:7px;padding:7px 10px;font-size:10px;letter-spacing:1px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -163,12 +173,12 @@ footer{color:#776b80;font-size:11px;margin-top:35px;text-align:center}
   <div class="brand"><img src="logo-cruel.png" alt="Logo CRUEL"><div><strong>CRUEL</strong><small>TRACKER</small></div></div>
   <nav>
     <button class="active" data-page="home"><span class="navicon">⌂</span>Inicio</button>
-    <button data-page="games"><span class="navicon">🎮</span>Juegos</button>
+    <button data-page="games"><span class="navicon"><svg viewBox="0 0 24 24"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59C2.6 9.42 2 14.46 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.41-1.41A2 2 0 0 1 9.83 16h4.34a2 2 0 0 1 1.41.59L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.55-.6-6.58-.68-7.26A4 4 0 0 0 17.32 5z"/></svg></span>Juegos</button>
     <button data-page="rankings"><span class="navicon">♛</span>Rankings</button>
     <button data-page="cruel"><span class="navicon">☠</span>Cruel Tracker</button>
     <button data-page="profile"><span class="navicon">♙</span>Perfil</button>
   </nav>
-  <div class="side-note"><b>CRUEL</b><br>Gaming Tracker<br>Play. Track. Improve.</div>
+  <div class="side-note"><b>CRUEL</b><br>Gaming Tracker<br>Play. Track. Improve.<br><button class="sfx" id="sfxBtn" type="button" onclick="sfxToggle()">SONIDO: ON</button></div>
 </aside>
 <main>
   <div class="topbar"><span>CRUEL TRACKER　//　TU GAMING, TUS ESTADÍSTICAS.</span><span class="online">INTERFAZ DEMO</span></div>
@@ -433,6 +443,47 @@ function fbDraw(){
   const dis=n=>n?'':' disabled';
   document.getElementById('fbPager').innerHTML=rows.length>size?`<button class="back" onclick="fbPage=0;fbDraw()"${dis(fbPage)}>« Primera</button><button class="back" onclick="fbPage--;fbDraw()"${dis(fbPage)}>←</button>Página ${fbPage+1} de ${pages}<button class="back" onclick="fbPage++;fbDraw()"${dis(fbPage<pages-1)}>→</button><button class="back" onclick="fbPage=${pages-1};fbDraw()"${dis(fbPage<pages-1)}>Última »</button>`:'';
 }
+/* Sonido suave de viento al pasar el mouse */
+let sfxOn=true,sfxCtx=null,sfxBuf=null,sfxLast=0;
+try{sfxOn=localStorage.getItem('sfx')!=='off'}catch(e){}
+const SFX_SEL='nav button,.game,.back,.primary,.hero button,.filter-toggle,.tracker-tab,.fb-pager button,.profile-game-current,.profile-game-option,.player-result';
+function sfxInit(){
+  if(sfxCtx)return;
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  sfxCtx=new AC();
+  const n=Math.floor(sfxCtx.sampleRate*0.5),b=sfxCtx.createBuffer(1,n,sfxCtx.sampleRate),d=b.getChannelData(0);
+  for(let i=0;i<n;i++)d[i]=Math.random()*2-1;
+  sfxBuf=b;
+}
+function sfxWind(){
+  if(!sfxOn||!sfxCtx||sfxCtx.state!=='running')return;
+  const t=sfxCtx.currentTime;if(t-sfxLast<0.15)return;sfxLast=t;
+  const src=sfxCtx.createBufferSource(),f=sfxCtx.createBiquadFilter(),g=sfxCtx.createGain();
+  src.buffer=sfxBuf;f.type='lowpass';f.Q.value=0.4;
+  f.frequency.setValueAtTime(300,t);f.frequency.linearRampToValueAtTime(800,t+0.2);f.frequency.linearRampToValueAtTime(450,t+0.42);
+  g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(0.03,t+0.14);g.gain.linearRampToValueAtTime(0.0001,t+0.42);
+  src.connect(f);f.connect(g);g.connect(sfxCtx.destination);src.start(t);src.stop(t+0.45);
+}
+function sfxPop(){
+  if(!sfxOn||!sfxCtx||sfxCtx.state!=='running')return;
+  const t=sfxCtx.currentTime,o=sfxCtx.createOscillator(),g=sfxCtx.createGain();
+  o.type='sine';o.frequency.setValueAtTime(420,t);o.frequency.exponentialRampToValueAtTime(150,t+0.09);
+  g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(0.1,t+0.008);g.gain.exponentialRampToValueAtTime(0.0001,t+0.12);
+  o.connect(g);g.connect(sfxCtx.destination);o.start(t);o.stop(t+0.14);
+}
+function sfxLabel(){document.getElementById('sfxBtn').textContent='SONIDO: '+(sfxOn?'ON':'OFF')}
+function sfxToggle(){
+  sfxOn=!sfxOn;try{localStorage.setItem('sfx',sfxOn?'on':'off')}catch(e){}
+  sfxLabel();sfxInit();if(sfxCtx&&sfxCtx.state==='suspended')sfxCtx.resume();if(sfxOn&&sfxCtx.state==='running')sfxPop();
+}
+const CLICK_SEL='button,a,select,.game,.player-result,.profile-game-current,.profile-game-option,.filter-option';
+document.addEventListener('pointerdown',e=>{
+  sfxInit();if(!sfxCtx)return;
+  const hit=e.target.closest&&e.target.closest(CLICK_SEL);
+  if(sfxCtx.state==='suspended')sfxCtx.resume().then(()=>{if(hit)sfxPop()});else if(hit)sfxPop();
+});
+document.addEventListener('mouseover',e=>{const el=e.target.closest&&e.target.closest(SFX_SEL);if(el&&!el.contains(e.relatedTarget))sfxWind()});
+sfxLabel();
 render();
 </script>
 </body></html>
