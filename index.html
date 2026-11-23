@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRUEL Tracker</title>
+<title>CRU3L Tracker</title>
 <style>
 :root{
   --bg:#050407;
@@ -578,6 +578,7 @@ nav button:active,.back:active,.primary:active,.hero button:active,.filter-toggl
 @keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .sfx{margin-top:12px;background:transparent;border:1px solid #512075;color:#b98ae1;border-radius:7px;padding:7px 10px;font-size:10px;letter-spacing:1px;cursor:pointer}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.scroll-reveal,.scroll-reveal.reveal-pending{opacity:1!important;transform:none!important}}
+@media(min-width:951px){.games{grid-template-columns:repeat(6,minmax(0,1fr))}.games .game{grid-column:span 2}.games .game:nth-child(n+4){grid-column:span 3}}
 </style>
 </head>
 <body>
@@ -589,24 +590,24 @@ nav button:active,.back:active,.primary:active,.hero button:active,.filter-toggl
       <img
         id="cruelBrandImg"
         src="logo-cruel.jpg"
-        alt="CRUEL"
+        alt="CRU3L"
         data-candidates='["logo-cruel.jpg","logocruel (1)_2.jpg","logo-cruel-top.jpg","logocruel.jpg","logocruel.png","logo-cruel.png"]'
         onerror="tryNextBrandLogo(this)"
       >
     </div>
-    <div><strong>CRUEL</strong><small>TRACKER</small></div>
+    <div><strong>CRU3L</strong><small>TRACKER</small></div>
   </div>
   <nav>
     <button class="active" data-page="home"><span class="navicon">⌂</span>Inicio</button>
     <button data-page="games"><span class="navicon"><svg viewBox="0 0 24 24"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59C2.6 9.42 2 14.46 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.41-1.41A2 2 0 0 1 9.83 16h4.34a2 2 0 0 1 1.41.59L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.55-.6-6.58-.68-7.26A4 4 0 0 0 17.32 5z"/></svg></span>Juegos</button>
     <button data-page="rankings"><span class="navicon">♛</span>Rankings</button>
-    <button data-page="cruel"><span class="navicon">☠</span>Cruel Tracker</button>
+    <button data-page="cruel"><span class="navicon">☠</span>Cru3l Tracker</button>
     <button data-page="profile"><span class="navicon">♙</span>Perfil</button>
   </nav>
-  <div class="side-note"><b>CRUEL</b><br>Gaming Tracker<br>Play. Track. Improve.<br><button class="sfx" id="sfxBtn" type="button" onclick="sfxToggle()">SONIDO: ON</button></div>
+  <div class="side-note"><b>CRU3L</b><br>Gaming Tracker<br>Play. Track. Improve.<br><button class="sfx" id="sfxBtn" type="button" onclick="sfxToggle()">SONIDO: ON</button></div>
 </aside>
 <main>
-  <div class="topbar"><span>CRUEL TRACKER // TU GAMING, TUS ESTADÍSTICAS.</span><span class="online">INTERFAZ DEMO</span></div>
+  <div class="topbar"><span>CRU3L TRACKER // TU GAMING, TUS ESTADÍSTICAS.</span><span class="online">INTERFAZ DEMO</span></div>
   <section id="home" class="page active">
     <div class="hero">
       <div class="hero-bg"></div>
@@ -630,7 +631,7 @@ nav button:active,.back:active,.primary:active,.hero button:active,.filter-toggl
       <div class="stat scroll-reveal"><b>—</b><span>Miembros registrados</span></div>
       <div class="stat scroll-reveal"><b>—</b><span>Partidas registradas</span></div>
       <div class="stat scroll-reveal"><b>—</b><span>Win rate promedio</span></div>
-      <div class="stat scroll-reveal"><b>#—</b><span>Ranking CRUEL</span></div>
+      <div class="stat scroll-reveal"><b>#—</b><span>Ranking CRU3L</span></div>
     </div>
   </section>
   <section id="games" class="page">
@@ -638,23 +639,23 @@ nav button:active,.back:active,.primary:active,.hero button:active,.filter-toggl
     <div class="games" id="allGames"></div>
   </section>
   <section id="rankings" class="page">
-    <div class="section-head"><h2>Ranking CRUEL</h2><span class="empty">Clasificación exclusiva de usuarios registrados</span></div>
+    <div class="section-head"><h2>Ranking CRU3L</h2><span class="empty">Clasificación exclusiva de usuarios registrados</span></div>
     <div class="panel">
-      <div class="ranking-intro"><div><span class="eyebrow">RANKING GENERAL</span><h3>El poder total de cada jugador.</h3><p class="empty">La puntuación CRUEL sumará los puntos obtenidos en todos los juegos vinculados a cada cuenta. Puedes competir jugando un solo juego.</p></div><div class="total-chip">PUNTOS<br><b>CRUEL</b></div></div>
-      <table><thead><tr><th>Posición</th><th>Jugador</th><th>Juegos vinculados</th><th>Puntos CRUEL</th></tr></thead><tbody><tr><td>—</td><td>Esperando registros</td><td>—</td><td>—</td></tr></tbody></table>
+      <div class="ranking-intro"><div><span class="eyebrow">RANKING GENERAL</span><h3>El poder total de cada jugador.</h3><p class="empty">La puntuación CRU3L sumará los puntos obtenidos en todos los juegos vinculados a cada cuenta. Puedes competir jugando un solo juego.</p></div><div class="total-chip">PUNTOS<br><b>CRU3L</b></div></div>
+      <table><thead><tr><th>Posición</th><th>Jugador</th><th>Juegos vinculados</th><th>Puntos CRU3L</th></tr></thead><tbody><tr><td>—</td><td>Esperando registros</td><td>—</td><td>—</td></tr></tbody></table>
       <p class="notice">El ranking se llenará automáticamente cuando estén disponibles el registro de usuarios y las conexiones de estadísticas. No se muestran puntuaciones inventadas.</p>
     </div>
   </section>
   <section id="profile" class="page">
     <div class="section-head"><h2>Perfil de jugador</h2></div>
-    <div class="panel"><h3>Tu perfil CRUEL</h3><p class="empty">El perfil personal permitirá vincular tus nombres de usuario de cada juego y consultar tus estadísticas en un solo lugar.</p><button class="primary" onclick="alert('La creación de cuentas se añadirá en la siguiente etapa.')">Configurar perfil</button></div>
+    <div class="panel"><h3>Tu perfil CRU3L</h3><p class="empty">El perfil personal permitirá vincular tus nombres de usuario de cada juego y consultar tus estadísticas en un solo lugar.</p><button class="primary" onclick="alert('La creación de cuentas se añadirá en la siguiente etapa.')">Configurar perfil</button></div>
   </section>
   <section id="playerProfile" class="page">
-    <div class="detail-top"><div><div class="empty">CRUEL TRACKER / PERFIL DE JUGADOR</div><h2>Perfil del jugador</h2></div><button class="back" onclick="showPage('home')">← Volver al inicio</button></div>
+    <div class="detail-top"><div><div class="empty">CRU3L TRACKER / PERFIL DE JUGADOR</div><h2>Perfil del jugador</h2></div><button class="back" onclick="showPage('home')">← Volver al inicio</button></div>
     <div class="profile-hero">
       <div class="profile-avatar" id="playerAvatar">?</div>
       <div class="profile-head-info"><h2 id="playerProfileName" style="margin:0">Jugador</h2><div class="profile-meta" id="playerProfileGame">Selecciona un juego para ver sus estadísticas</div></div>
-      <div class="profile-cruel-total"><span>PUNTOS CRUEL</span><b id="playerCruelPoints">—</b><small id="playerCruelRank">Posición general: —</small></div>
+      <div class="profile-cruel-total"><span>PUNTOS CRU3L</span><b id="playerCruelPoints">—</b><small id="playerCruelRank">Posición general: —</small></div>
     </div>
     <div class="profile-section-head"><div><span class="eyebrow">PERFIL MULTIJUEGO</span></div></div>
     <div class="profile-game-picker" id="profileGamePicker">
@@ -687,10 +688,10 @@ nav button:active,.back:active,.primary:active,.hero button:active,.filter-toggl
 <div id="fbStatus" class="empty"></div><div class="fb-wrap"><table id="fbTable"></table></div><div class="fb-pager" id="fbPager"></div></div><div id="globalPlaceholder"><span class="eyebrow">RANKING MUNDIAL</span><h3>Estadísticas y posición global</h3><p class="empty">Aquí se mostrarán las estadísticas reales que la fuente de cada juego permita consultar y el ranking mundial correspondiente.</p><div class="detail-grid"><div class="detail-stat"><span>Rango actual</span><b>—</b></div><div class="detail-stat"><span>Victorias</span><b>—</b></div><div class="detail-stat"><span>Win rate</span><b>—</b></div><div class="detail-stat"><span>K/D o métrica disponible</span><b>—</b></div><div class="detail-stat"><span>Partidas</span><b>—</b></div><div class="detail-stat"><span>Posición global</span><b>—</b></div></div></div></div>
   </section>
   <section id="cruel" class="page">
-    <div class="detail-top"><div><div class="empty">CRUEL TRACKER</div><h2>Ranking CRUEL</h2></div></div>
-    <div class="panel"><span class="eyebrow">PUNTUACIÓN CRUEL</span><h3>Tu aporte al ranking general</h3><p class="empty">Los puntos que consigas en cada juego se sumarán a los de los demás juegos vinculados a tu perfil para calcular tu posición en el ranking CRUEL.</p><div class="detail-grid"><div class="detail-stat"><span>Puntos CRUEL totales</span><b>—</b></div><div class="detail-stat"><span>Posición en ranking CRUEL</span><b>—</b></div><div class="detail-stat"><span>Juegos vinculados</span><b>—</b></div></div></div>
+    <div class="detail-top"><div><div class="empty">CRU3L TRACKER</div><h2>Ranking CRU3L</h2></div></div>
+    <div class="panel"><span class="eyebrow">PUNTUACIÓN CRU3L</span><h3>Tu aporte al ranking general</h3><p class="empty">Los puntos que consigas en cada juego se sumarán a los de los demás juegos vinculados a tu perfil para calcular tu posición en el ranking CRU3L.</p><div class="detail-grid"><div class="detail-stat"><span>Puntos CRU3L totales</span><b>—</b></div><div class="detail-stat"><span>Posición en ranking CRU3L</span><b>—</b></div><div class="detail-stat"><span>Juegos vinculados</span><b>—</b></div></div></div>
   </section>
-  <footer>CRUEL TRACKER · PROTOTIPO VISUAL · Los resultados de búsqueda actuales son ficticios y solo demuestran la interfaz.</footer>
+  <footer>CRU3L TRACKER · PROTOTIPO VISUAL · Los resultados de búsqueda actuales son ficticios y solo demuestran la interfaz.</footer>
 </main>
 </div>
 
@@ -708,6 +709,7 @@ function tryNextBrandLogo(imgEl){
 }
 
 const DEFAULT_ACCENT = "#9333EA";
+let pageAccent = DEFAULT_ACCENT;   // acento "de la pagina": morado, o el color del juego abierto
 
 const GAMES_CONFIG = [
   {
@@ -788,7 +790,7 @@ function initBackgroundLogos() {
 
 function setActiveGameTheme(gameObj) {
   if (!gameObj) {
-    setAccentColor(DEFAULT_ACCENT);
+    setAccentColor(pageAccent);
     document.querySelectorAll(".bg-logo-layer").forEach(layer => layer.classList.remove("active"));
     return;
   }
@@ -969,6 +971,7 @@ function bindGameHoverListeners(){
 }
 
 let revealObserver = null;
+let scrollFallbackBound = false;
 function initScrollAnimations(){
   if (revealObserver) {
     revealObserver.disconnect();
@@ -1013,7 +1016,7 @@ function initScrollAnimations(){
     }
   });
 
-  window.addEventListener("scroll", () => {
+  if (!scrollFallbackBound) { scrollFallbackBound = true; window.addEventListener("scroll", () => {
     const vh = window.innerHeight || 900;
     document.querySelectorAll(".scroll-reveal.reveal-pending").forEach(el => {
       const r = el.getBoundingClientRect();
@@ -1023,7 +1026,7 @@ function initScrollAnimations(){
         if (revealObserver) revealObserver.unobserve(el);
       }
     });
-  }, { passive: true });
+  }, { passive: true }); }
 }
 
 function render(){
@@ -1037,6 +1040,7 @@ function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+  if(id!=='detail')pageAccent=DEFAULT_ACCENT;
   setActiveGameTheme(null);
   window.scrollTo({top:0,behavior:'smooth'});
   setTimeout(initScrollAnimations, 60);
@@ -1045,7 +1049,8 @@ function showPage(id){
 function openGame(name){
   document.getElementById('detailTitle').textContent=name;
   const matchedGame = GAMES_CONFIG.find(g => g.name === name);
-  setAccentColor(matchedGame ? matchedGame.color : DEFAULT_ACCENT);
+  pageAccent = matchedGame ? matchedGame.color : DEFAULT_ACCENT;
+  setAccentColor(pageAccent);
   const fin=name==='THE FINALS';
   document.getElementById('finalsBoard').classList.toggle('hidden',!fin);
   document.getElementById('globalPlaceholder').classList.toggle('hidden',fin);
